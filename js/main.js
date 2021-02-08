@@ -1,4 +1,4 @@
-const getRandomFloatRange = (max, min, float) => {
+const getRandomFloatRange = (max, min, floating) => {
 
   if (max < 0 || min < 0) {
     throw new Error('Можно использовать только положительные числа.')
@@ -10,7 +10,7 @@ const getRandomFloatRange = (max, min, float) => {
 
   const result = Math.random() * (max - min - 1) + min;
 
-  return result.toFixed(float);
+  return result.toFixed(floating);
 }
 
 const getRandomIntRange = (max, min = 0) => {
