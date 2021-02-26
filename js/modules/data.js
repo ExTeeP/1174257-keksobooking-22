@@ -45,6 +45,8 @@ const generateMockObject = function () {
   }
 }
 
-export const getOffersList = function (count) {
+const getOffersList = function (count) {
   return new Array(count).fill(null).map(() => generateMockObject())
 };
+
+export {getOffersList}
