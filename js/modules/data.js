@@ -6,7 +6,24 @@ import {
 
 const NUMBER_AVATAR_LOWER = 1;
 const NUMBER_AVATAR_UPPER = 8;
-const RENTAL_TYPES = ['palace', 'flat', 'house', 'bungalow'];
+const APARTMENTS = [
+  {
+    type: 'bungalow',
+    price: 0,
+  },
+  {
+    type: 'flat',
+    price: 1000,
+  },
+  {
+    type: 'house',
+    price: 5000,
+  },
+  {
+    type: 'palace',
+    price: 10000,
+  },
+];
 const CHECK_TIMES = ['12:00', '13:00', '14:00'];
 const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
@@ -20,6 +37,7 @@ const getRandomAvatar = function () {
 const generateMockObject = function () {
   const randomX = getRandomNumber(35.65000, 35.70000, 5);
   const randomY = getRandomNumber(139.70000, 139.80000, 5);
+  const checkTime = getRandomElementArray(CHECK_TIMES);
 
   return {
     author: {
@@ -29,11 +47,11 @@ const generateMockObject = function () {
       title: '44 квадрата на Лубянке',
       address: `${randomX} ${randomY}`,
       price: getRandomNumber(1, 10000),
-      type: getRandomElementArray(RENTAL_TYPES),
+      type: getRandomElementArray(APARTMENTS).type,
       rooms: getRandomNumber(1, 10),
       guests: getRandomNumber(1, 10),
-      checkin: getRandomElementArray(CHECK_TIMES),
-      checkout: getRandomElementArray(CHECK_TIMES),
+      checkin: checkTime,
+      checkout: checkTime,
       features: getRandomElementsArray(FEATURES),
       description: 'Как на Рублевке, только хуже.',
       photos: getRandomElementsArray(PHOTOS),
@@ -49,4 +67,8 @@ const getOffersList = function (count) {
   return new Array(count).fill(null).map(() => generateMockObject())
 };
 
-export {getOffersList}
+export {
+  getOffersList,
+  APARTMENTS,
+  CHECK_TIMES
+};
