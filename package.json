@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "test": "eslint js/",
     "build": "webpack --mode development"
   },

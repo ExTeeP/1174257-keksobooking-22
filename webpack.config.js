@@ -11,8 +11,5 @@ module.exports = {
     contentBase: __dirname,
     watchContentBase: true,
     compress: true,
-    // open: {
-    //   app: [`chrome`, `--incognito`],
-    // },
   },
 };
