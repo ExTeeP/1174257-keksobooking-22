@@ -12,4 +12,24 @@ module.exports = {
     watchContentBase: true,
     compress: true,
   },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              // outputPath: './img',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
