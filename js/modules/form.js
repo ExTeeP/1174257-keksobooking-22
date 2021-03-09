@@ -1,4 +1,5 @@
 import { APARTMENTS } from './data';
+import { disabledForm } from './utils';
 
 const noticeFormElement = document.querySelector('.ad-form');
 const typeElement = noticeFormElement.querySelector('#type');
@@ -28,10 +29,11 @@ const onTimeElementChange = function (evt) {
   } else {
     timeInElement.value = value;
   }
-
 };
 
 typeElement.addEventListener('change', onApartmentTypeChange);
 
 timeInElement.addEventListener('change', onTimeElementChange);
 timeOutElement.addEventListener('change', onTimeElementChange);
+
+disabledForm(noticeFormElement, true);

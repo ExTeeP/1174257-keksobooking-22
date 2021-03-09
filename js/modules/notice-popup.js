@@ -1,8 +1,5 @@
-import { getOffersList } from './data';
+import { getOffersList, NUMBER_OFFER } from './data';
 
-const NUMBER_OFFER = 1;
-
-const mapCanvas = document.querySelector('#map-canvas');
 const cartNoticeTemplate = document.querySelector('#card').content.querySelector('.popup');
 const cartNoticeListFragment = document.createDocumentFragment();
 const cartNoticeList = getOffersList(NUMBER_OFFER);
@@ -85,4 +82,7 @@ cartNoticeList.forEach((notice) => {
   cartNoticeListFragment.appendChild(noticeElement);
 });
 
-mapCanvas.appendChild(cartNoticeListFragment);
+export {
+  cartNoticeList,
+  cartNoticeListFragment
+}

@@ -6,27 +6,25 @@ import {
 
 const NUMBER_AVATAR_LOWER = 1;
 const NUMBER_AVATAR_UPPER = 8;
+const NUMBER_OFFER = 25;
+const CHECK_TIMES = ['12:00', '13:00', '14:00'];
+const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 const APARTMENTS = [
   {
     type: 'bungalow',
     price: 0,
-  },
-  {
+  }, {
     type: 'flat',
     price: 1000,
-  },
-  {
+  }, {
     type: 'house',
     price: 5000,
-  },
-  {
+  }, {
     type: 'palace',
     price: 10000,
   },
 ];
-const CHECK_TIMES = ['12:00', '13:00', '14:00'];
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 const getRandomAvatar = function () {
   const index = getRandomNumber(NUMBER_AVATAR_LOWER, NUMBER_AVATAR_UPPER);
@@ -45,7 +43,7 @@ const generateMockObject = function () {
     },
     offer: {
       title: '44 квадрата на Лубянке',
-      address: `${randomX} ${randomY}`,
+      address: `${randomX}, ${randomY}`,
       price: getRandomNumber(1, 10000),
       type: getRandomElementArray(APARTMENTS).type,
       rooms: getRandomNumber(1, 10),
@@ -70,5 +68,6 @@ const getOffersList = function (count) {
 export {
   getOffersList,
   APARTMENTS,
-  CHECK_TIMES
+  CHECK_TIMES,
+  NUMBER_OFFER
 };
