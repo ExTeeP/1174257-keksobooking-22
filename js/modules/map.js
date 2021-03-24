@@ -18,10 +18,14 @@ noticeAddress.placeholder = 'Укажите место используя мет
 noticeAddress.value = DEFAULT_CORDS.join(', ')
 
 const map = L.map('map-canvas', {
-  scrollWheelZoom: false,
   hoverToWake: false,
+  sleepNote: true,
   wakeMessage: 'Кликните левой клавишей мышы что-бы активировать карту',
   sleepOpacity: 0.7,
+  sleepNoteStyle: {
+    'opacity': '1',
+    'border': '2px solid red',
+  },
 })
   .on('load', function () {
     disabledForm(mapFilterForm, false);
@@ -32,7 +36,6 @@ const map = L.map('map-canvas', {
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
-
 
 const mainIcon = L.icon({
   iconUrl: './img/main-pin.svg',
