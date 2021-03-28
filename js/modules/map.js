@@ -1,5 +1,8 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import 'leaflet-sleep';
 import { disabledForm } from './utils';
 import { cartNoticeListFragment as dataNoticeListMarkup } from './notice-popup';
 import { cartNoticeList as dataNoticeList } from './notice-popup';
@@ -14,8 +17,17 @@ noticeAddress.readOnly = true;
 noticeAddress.placeholder = 'Укажите место используя метку на карте';
 noticeAddress.value = DEFAULT_CORDS.join(', ')
 
-const map = L.map('map-canvas')
-  .on('load', function() {
+const map = L.map('map-canvas', {
+  hoverToWake: false,
+  sleepNote: true,
+  wakeMessage: 'Кликните левой клавишей мышы что-бы активировать карту',
+  sleepOpacity: 0.7,
+  sleepNoteStyle: {
+    'opacity': '1',
+    'border': '2px solid red',
+  },
+})
+  .on('load', function () {
     disabledForm(mapFilterForm, false);
     disabledForm(noticeFormElement, false);
   })
@@ -43,6 +55,8 @@ const mainMarker = L.marker(DEFAULT_CORDS, {
   draggable: true,
 });
 
+const noticeMarkers = L.markerClusterGroup();
+
 const noticeMarker = function (latLng) {
   return L.marker(latLng, {
     icon: noticeIcon,
@@ -53,16 +67,19 @@ const noticeMarker = function (latLng) {
 mainMarker.addTo(map);
 
 dataNoticeList.forEach((notice, i) => {
-  const {x: lat} = notice.location;
-  const {y: lng} = notice.location;
+  const { x: lat } = notice.location;
+  const { y: lng } = notice.location;
 
   noticeMarker([lat, lng])
-    .addTo(map)
     .bindPopup(dataNoticeListMarkup.childNodes[i],
       {
         keepInView: true,
-      });
-})
+      },
+    )
+    .addTo(noticeMarkers);
+});
+
+noticeMarkers.addTo(map)
 
 mainMarker.on('moveend', function (evt) {
   const y = evt.target.getLatLng().lat.toFixed(5);

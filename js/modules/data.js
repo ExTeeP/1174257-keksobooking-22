@@ -25,6 +25,8 @@ const APARTMENTS = [
     price: 10000,
   },
 ];
+const MAX_PRICE_VALUE = 1000000;
+const NUMBER_GUESTS = ['100', '1', '2', '3'];
 
 const getRandomAvatar = function () {
   const index = getRandomNumber(NUMBER_AVATAR_LOWER, NUMBER_AVATAR_UPPER);
@@ -68,6 +70,8 @@ const getOffersList = function (count) {
 export {
   getOffersList,
   APARTMENTS,
+  MAX_PRICE_VALUE,
+  NUMBER_GUESTS,
   CHECK_TIMES,
   NUMBER_OFFER
 };
